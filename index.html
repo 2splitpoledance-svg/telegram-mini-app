@@ -2,18 +2,20 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Telegram Mini App Form</title>
+    <title>Анкета клиента</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
       :root {
-        --bg: #f4efe7;
-        --card: #fffdf9;
-        --text: #1d1d1d;
-        --muted: #6b6257;
-        --line: #e6dacb;
+        --bg: #f6efe6;
+        --panel: #fffdf8;
+        --text: #201d18;
+        --muted: #74695c;
+        --line: #e7dccf;
         --accent: #1d7a62;
-        --accent-dark: #165b49;
+        --accent-dark: #165f4c;
+        --accent-soft: #e4f3ed;
+        --shadow: 0 18px 48px rgba(52, 35, 18, 0.14);
       }
 
       * {
@@ -26,48 +28,84 @@
         font-family: "Segoe UI", Tahoma, sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at top left, rgba(29, 122, 98, 0.18), transparent 32%),
-          linear-gradient(180deg, #f7f0e7 0%, var(--bg) 100%);
+          radial-gradient(circle at top left, rgba(29, 122, 98, 0.18), transparent 34%),
+          linear-gradient(180deg, #f9f1e8 0%, var(--bg) 100%);
       }
 
       .wrap {
-        width: min(100%, 560px);
+        width: min(100%, 620px);
         margin: 0 auto;
-        padding: 22px 16px 28px;
+        padding: 20px 16px 32px;
       }
 
       .card {
-        background: var(--card);
+        background: var(--panel);
         border: 1px solid var(--line);
-        border-radius: 24px;
+        border-radius: 28px;
         padding: 24px;
-        box-shadow: 0 18px 40px rgba(44, 32, 16, 0.12);
+        box-shadow: var(--shadow);
       }
 
       .eyebrow {
         margin: 0 0 8px;
         color: var(--accent);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
       h1 {
-        margin: 0 0 8px;
-        font-size: 30px;
+        margin: 0;
+        font-size: 32px;
         line-height: 1.05;
       }
 
-      .subtitle {
-        margin: 0 0 22px;
+      .lead {
+        margin: 10px 0 20px;
         color: var(--muted);
-        line-height: 1.5;
+        line-height: 1.55;
       }
 
-      form {
-        display: grid;
-        gap: 14px;
+      .progress-bar {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: #efe5d9;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .progress-value {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #1d7a62 0%, #2ca07e 100%);
+        transition: width 0.25s ease;
+      }
+
+      .progress-text {
+        margin-bottom: 16px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .screen {
+        display: none;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      .question-title {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .question-note {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.5;
       }
 
       label {
@@ -77,21 +115,74 @@
         font-weight: 600;
       }
 
-      input {
+      input,
+      textarea {
         width: 100%;
         border: 1px solid var(--line);
+        border-radius: 16px;
         background: #fff;
-        border-radius: 14px;
-        padding: 14px 16px;
-        font: inherit;
         color: var(--text);
+        font: inherit;
+        padding: 14px 16px;
         outline: none;
         transition: border-color 0.2s ease, transform 0.2s ease;
       }
 
-      input:focus {
+      input:focus,
+      textarea:focus {
         border-color: var(--accent);
         transform: translateY(-1px);
+      }
+
+      textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .choices {
+        display: grid;
+        gap: 12px;
+      }
+
+      .choice {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 16px;
+        background: #fff;
+        cursor: pointer;
+        transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      }
+
+      .choice:hover {
+        transform: translateY(-1px);
+      }
+
+      .choice.selected {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .choice-title {
+        margin: 0 0 4px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .choice-text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.45;
+        font-size: 14px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .nav button {
+        flex: 1;
       }
 
       button {
@@ -100,63 +191,183 @@
         padding: 14px 18px;
         font: inherit;
         font-weight: 700;
-        color: #fff;
-        background: var(--accent);
         cursor: pointer;
-        transition: background 0.2s ease, transform 0.2s ease;
+        transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
       }
 
       button:hover {
-        background: var(--accent-dark);
         transform: translateY(-1px);
       }
 
-      .note {
-        margin-top: 16px;
+      .btn-primary {
+        color: #fff;
+        background: var(--accent);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-dark);
+      }
+
+      .btn-secondary {
+        color: var(--text);
+        background: #efe6db;
+      }
+
+      .btn-secondary:hover {
+        background: #e6dbcd;
+      }
+
+      .btn-primary:disabled,
+      .btn-secondary:disabled {
+        opacity: 0.45;
+        cursor: default;
+        transform: none;
+      }
+
+      .summary {
+        display: grid;
+        gap: 10px;
+      }
+
+      .summary-item {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 16px;
+        background: #fff;
+      }
+
+      .summary-label {
+        font-size: 12px;
         color: var(--muted);
-        font-size: 13px;
-        line-height: 1.45;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+
+      .summary-value {
+        font-size: 16px;
+        line-height: 1.4;
       }
 
       .preview {
         display: none;
-        margin-top: 16px;
+        margin-top: 18px;
         padding: 14px;
+        border-radius: 16px;
         border: 1px dashed var(--line);
-        border-radius: 14px;
-        background: #faf5ee;
+        background: #faf4ec;
         white-space: pre-wrap;
-        font-size: 14px;
       }
     </style>
   </head>
-
   <body>
     <div class="wrap">
       <div class="card">
         <p class="eyebrow">Telegram Mini App</p>
-        <h1>Мини-форма</h1>
-        <p class="subtitle">
-          Привет, <span id="name">гость</span>. Это минимальная форма внутри Telegram.
+        <h1>Демо-анкета</h1>
+        <p class="lead">
+          Привет, <span id="telegram-user">гость</span>. Это пример красивой анкеты в стиле
+          мини-формы внутри Telegram.
         </p>
 
-        <form id="lead-form">
+        <div class="progress-bar">
+          <div id="progress-value" class="progress-value"></div>
+        </div>
+        <div id="progress-text" class="progress-text">Шаг 1 из 6</div>
+
+        <section class="screen active" data-step="0">
+          <h2 class="question-title">Как тебя зовут?</h2>
+          <p class="question-note">Начнём с базового знакомства.</p>
           <label>
             Имя
-            <input id="lead-name" type="text" placeholder="Анна" required />
+            <input id="name" type="text" placeholder="Анна" />
           </label>
+        </section>
 
+        <section class="screen" data-step="1">
+          <h2 class="question-title">Как с тобой связаться?</h2>
+          <p class="question-note">Оставь номер, чтобы можно было быстро ответить.</p>
           <label>
             Телефон
-            <input id="lead-phone" type="tel" placeholder="+380..." required />
+            <input id="phone" type="tel" placeholder="+380..." />
           </label>
+        </section>
 
-          <button type="submit">Отправить боту</button>
-        </form>
+        <section class="screen" data-step="2">
+          <h2 class="question-title">Есть ли у тебя опыт?</h2>
+          <p class="question-note">Выбери вариант, который ближе всего к тебе.</p>
+          <div id="experience-options" class="choices">
+            <div class="choice" data-value="Никогда не занималась">
+              <p class="choice-title">С нуля</p>
+              <p class="choice-text">Хочу мягко начать и разобраться в основах.</p>
+            </div>
+            <div class="choice" data-value="Немного занималась раньше">
+              <p class="choice-title">Немного пробовала</p>
+              <p class="choice-text">Есть небольшой опыт, но нужен уверенный старт.</p>
+            </div>
+            <div class="choice" data-value="Есть уверенный опыт">
+              <p class="choice-title">Уже в теме</p>
+              <p class="choice-text">Хочу более точный подбор нагрузки и направления.</p>
+            </div>
+          </div>
+        </section>
 
-        <div class="note">
-          Если открыть страницу обычным браузером, ты увидишь только предпросмотр. Чтобы
-          отправка реально ушла боту, страницу нужно открыть внутри Telegram Mini App.
+        <section class="screen" data-step="3">
+          <h2 class="question-title">Какая у тебя цель?</h2>
+          <p class="question-note">Что тебе сейчас важнее всего?</p>
+          <div id="goal-options" class="choices">
+            <div class="choice" data-value="Для удовольствия и уверенности">
+              <p class="choice-title">Для себя</p>
+              <p class="choice-text">Хочу кайфовать от процесса и чувствовать уверенность.</p>
+            </div>
+            <div class="choice" data-value="Для силы и красивой формы">
+              <p class="choice-title">Форма и сила</p>
+              <p class="choice-text">Интересует тело, выносливость и прогресс.</p>
+            </div>
+            <div class="choice" data-value="Для сцены и красивых элементов">
+              <p class="choice-title">Техника и сцена</p>
+              <p class="choice-text">Хочу работать на результат и элементы посложнее.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-step="4">
+          <h2 class="question-title">Когда тебе удобнее?</h2>
+          <p class="question-note">Это просто тестовый пример, поэтому выбери один вариант.</p>
+          <div id="schedule-options" class="choices">
+            <div class="choice" data-value="Утро в будни">
+              <p class="choice-title">Утро в будни</p>
+              <p class="choice-text">Если удобно начинать день с тренировки.</p>
+            </div>
+            <div class="choice" data-value="Вечер в будни">
+              <p class="choice-title">Вечер в будни</p>
+              <p class="choice-text">Самый частый вариант после работы или учёбы.</p>
+            </div>
+            <div class="choice" data-value="Выходные">
+              <p class="choice-title">Выходные</p>
+              <p class="choice-text">Если хочешь заниматься в более свободном режиме.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-step="5">
+          <h2 class="question-title">Комментарий</h2>
+          <p class="question-note">Напиши что-то важное: пожелания, страхи, вопросы.</p>
+          <label>
+            Комментарий
+            <textarea id="comment" placeholder="Например: немного волнуюсь, хочу попробовать мягкий старт."></textarea>
+          </label>
+        </section>
+
+        <section class="screen" data-step="6">
+          <h2 class="question-title">Проверь анкету</h2>
+          <p class="question-note">Вот так может выглядеть финальный экран перед отправкой.</p>
+          <div id="summary" class="summary"></div>
+        </section>
+
+        <div class="nav">
+          <button id="back-btn" class="btn-secondary" type="button">Назад</button>
+          <button id="next-btn" class="btn-primary" type="button">Далее</button>
         </div>
 
         <div id="preview" class="preview"></div>
@@ -165,30 +376,137 @@
 
     <script>
       const tg = window.Telegram?.WebApp;
-      const form = document.getElementById("lead-form");
-      const preview = document.getElementById("preview");
-      const userName = tg?.initDataUnsafe?.user?.first_name || "гость";
+      const totalSteps = 7;
+      let currentStep = 0;
 
-      document.getElementById("name").innerText = userName;
+      const formData = {
+        action: "demo_survey",
+        telegram_name: tg?.initDataUnsafe?.user?.first_name || "гость",
+        name: "",
+        phone: "",
+        experience: "",
+        goal: "",
+        schedule: "",
+        comment: "",
+      };
+
+      const screens = Array.from(document.querySelectorAll(".screen"));
+      const progressValue = document.getElementById("progress-value");
+      const progressText = document.getElementById("progress-text");
+      const backBtn = document.getElementById("back-btn");
+      const nextBtn = document.getElementById("next-btn");
+      const preview = document.getElementById("preview");
+
+      document.getElementById("telegram-user").innerText = formData.telegram_name;
 
       if (tg) {
         tg.ready();
         tg.expand();
       }
 
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
+      function setChoice(groupId, target, key) {
+        const group = document.getElementById(groupId);
+        const items = group.querySelectorAll(".choice");
+        items.forEach((item) => item.classList.remove("selected"));
+        target.classList.add("selected");
+        formData[key] = target.dataset.value;
+      }
 
-        const payload = {
-          action: "lead_form",
-          name: document.getElementById("lead-name").value.trim(),
-          phone: document.getElementById("lead-phone").value.trim(),
-          telegram_name: userName,
-        };
+      document
+        .querySelectorAll("#experience-options .choice")
+        .forEach((item) =>
+          item.addEventListener("click", () => setChoice("experience-options", item, "experience"))
+        );
 
-        if (!payload.name || !payload.phone) {
-          return;
+      document
+        .querySelectorAll("#goal-options .choice")
+        .forEach((item) =>
+          item.addEventListener("click", () => setChoice("goal-options", item, "goal"))
+        );
+
+      document
+        .querySelectorAll("#schedule-options .choice")
+        .forEach((item) =>
+          item.addEventListener("click", () => setChoice("schedule-options", item, "schedule"))
+        );
+
+      function renderSummary() {
+        formData.name = document.getElementById("name").value.trim();
+        formData.phone = document.getElementById("phone").value.trim();
+        formData.comment = document.getElementById("comment").value.trim();
+
+        const summary = document.getElementById("summary");
+        const fields = [
+          ["Имя", formData.name || "-"],
+          ["Телефон", formData.phone || "-"],
+          ["Опыт", formData.experience || "-"],
+          ["Цель", formData.goal || "-"],
+          ["Удобное время", formData.schedule || "-"],
+          ["Комментарий", formData.comment || "-"],
+        ];
+
+        summary.innerHTML = fields
+          .map(
+            ([label, value]) => `
+              <div class="summary-item">
+                <div class="summary-label">${label}</div>
+                <div class="summary-value">${value}</div>
+              </div>
+            `
+          )
+          .join("");
+      }
+
+      function updateStep() {
+        screens.forEach((screen, index) => {
+          screen.classList.toggle("active", index === currentStep);
+        });
+
+        const visibleStep = Math.min(currentStep + 1, totalSteps);
+        progressText.innerText = `Шаг ${visibleStep} из ${totalSteps}`;
+        progressValue.style.width = `${(visibleStep / totalSteps) * 100}%`;
+
+        backBtn.disabled = currentStep === 0;
+        nextBtn.innerText = currentStep === totalSteps - 1 ? "Отправить боту" : "Далее";
+
+        if (currentStep === totalSteps - 1) {
+          renderSummary();
         }
+      }
+
+      function validateStep() {
+        formData.name = document.getElementById("name").value.trim();
+        formData.phone = document.getElementById("phone").value.trim();
+        formData.comment = document.getElementById("comment").value.trim();
+
+        if (currentStep === 0 && !formData.name) {
+          return false;
+        }
+
+        if (currentStep === 1 && !formData.phone) {
+          return false;
+        }
+
+        if (currentStep === 2 && !formData.experience) {
+          return false;
+        }
+
+        if (currentStep === 3 && !formData.goal) {
+          return false;
+        }
+
+        if (currentStep === 4 && !formData.schedule) {
+          return false;
+        }
+
+        return true;
+      }
+
+      function sendPayload() {
+        const payload = {
+          ...formData,
+          comment: formData.comment || "Без комментария",
+        };
 
         if (tg?.sendData) {
           tg.sendData(JSON.stringify(payload));
@@ -200,7 +518,32 @@
         preview.textContent =
           "Предпросмотр браузера. Данные, которые уйдут боту:\n\n" +
           JSON.stringify(payload, null, 2);
+      }
+
+      nextBtn.addEventListener("click", () => {
+        if (!validateStep()) {
+          return;
+        }
+
+        if (currentStep < totalSteps - 1) {
+          currentStep += 1;
+          updateStep();
+          return;
+        }
+
+        sendPayload();
       });
+
+      backBtn.addEventListener("click", () => {
+        if (currentStep === 0) {
+          return;
+        }
+
+        currentStep -= 1;
+        updateStep();
+      });
+
+      updateStep();
     </script>
   </body>
 </html>
