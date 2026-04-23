@@ -2,55 +2,205 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Telegram Mini App Demo</title>
+    <title>Telegram Mini App Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
+      :root {
+        --bg: #f4efe7;
+        --card: #fffdf9;
+        --text: #1d1d1d;
+        --muted: #6b6257;
+        --line: #e6dacb;
+        --accent: #1d7a62;
+        --accent-dark: #165b49;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: system-ui, sans-serif;
-        background: #f6f6f6;
-        text-align: center;
-        padding: 40px;
-        color: #333;
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(29, 122, 98, 0.18), transparent 32%),
+          linear-gradient(180deg, #f7f0e7 0%, var(--bg) 100%);
       }
-      h2 {
-        color: #0088cc;
+
+      .wrap {
+        width: min(100%, 560px);
+        margin: 0 auto;
+        padding: 22px 16px 28px;
       }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 18px 40px rgba(44, 32, 16, 0.12);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 30px;
+        line-height: 1.05;
+      }
+
+      .subtitle {
+        margin: 0 0 22px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font: inherit;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+
+      input:focus {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+
       button {
-        padding: 12px 25px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        background: #0088cc;
-        color: white;
+        border: 0;
+        border-radius: 16px;
+        padding: 14px 18px;
+        font: inherit;
+        font-weight: 700;
+        color: #fff;
+        background: var(--accent);
         cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
       }
+
       button:hover {
-        background: #0070aa;
+        background: var(--accent-dark);
+        transform: translateY(-1px);
+      }
+
+      .note {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .preview {
+        display: none;
+        margin-top: 16px;
+        padding: 14px;
+        border: 1px dashed var(--line);
+        border-radius: 14px;
+        background: #faf5ee;
+        white-space: pre-wrap;
+        font-size: 14px;
       }
     </style>
   </head>
 
   <body>
-    <h2>Привет, <span id="name">гость</span> 👋</h2>
-    <p>Это пример Telegram Mini App</p>
-    <button onclick="sendToBot()">Отправить данные боту</button>
+    <div class="wrap">
+      <div class="card">
+        <p class="eyebrow">Telegram Mini App</p>
+        <h1>Мини-форма</h1>
+        <p class="subtitle">
+          Привет, <span id="name">гость</span>. Это минимальная форма внутри Telegram.
+        </p>
+
+        <form id="lead-form">
+          <label>
+            Имя
+            <input id="lead-name" type="text" placeholder="Анна" required />
+          </label>
+
+          <label>
+            Телефон
+            <input id="lead-phone" type="tel" placeholder="+380..." required />
+          </label>
+
+          <button type="submit">Отправить боту</button>
+        </form>
+
+        <div class="note">
+          Если открыть страницу обычным браузером, ты увидишь только предпросмотр. Чтобы
+          отправка реально ушла боту, страницу нужно открыть внутри Telegram Mini App.
+        </div>
+
+        <div id="preview" class="preview"></div>
+      </div>
+    </div>
 
     <script>
-      const tg = window.Telegram.WebApp;
-      tg.ready();
+      const tg = window.Telegram?.WebApp;
+      const form = document.getElementById("lead-form");
+      const preview = document.getElementById("preview");
+      const userName = tg?.initDataUnsafe?.user?.first_name || "гость";
 
-      // Показываем имя пользователя (если Telegram передал его)
-      document.getElementById('name').innerText =
-        tg.initDataUnsafe?.user?.first_name || 'гость';
+      document.getElementById("name").innerText = userName;
 
-      // Отправляем данные обратно в бот
-      function sendToBot() {
-        tg.sendData(JSON.stringify({ action: "clicked" }));
+      if (tg) {
+        tg.ready();
+        tg.expand();
       }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const payload = {
+          action: "lead_form",
+          name: document.getElementById("lead-name").value.trim(),
+          phone: document.getElementById("lead-phone").value.trim(),
+          telegram_name: userName,
+        };
+
+        if (!payload.name || !payload.phone) {
+          return;
+        }
+
+        if (tg?.sendData) {
+          tg.sendData(JSON.stringify(payload));
+          tg.close();
+          return;
+        }
+
+        preview.style.display = "block";
+        preview.textContent =
+          "Предпросмотр браузера. Данные, которые уйдут боту:\n\n" +
+          JSON.stringify(payload, null, 2);
+      });
     </script>
   </body>
-</html>     
-
-<!-- update -->
-
+</html>
