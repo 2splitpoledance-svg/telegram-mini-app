@@ -14,14 +14,9 @@
         --line: #e5dacd;
         --accent: #2354d8;
         --accent-soft: #eef3ff;
-        --success: #1b7d57;
         --shadow: 0 20px 48px rgba(54, 36, 16, 0.12);
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
+      * { box-sizing: border-box; }
       body {
         margin: 0;
         min-height: 100vh;
@@ -31,13 +26,7 @@
           radial-gradient(circle at top left, rgba(35, 84, 216, 0.14), transparent 36%),
           linear-gradient(180deg, #fbf5ee 0%, var(--bg) 100%);
       }
-
-      .wrap {
-        width: min(100%, 760px);
-        margin: 0 auto;
-        padding: 18px 16px 32px;
-      }
-
+      .wrap { width: min(100%, 760px); margin: 0 auto; padding: 18px 16px 32px; }
       .card {
         background: var(--panel);
         border: 1px solid var(--line);
@@ -45,7 +34,6 @@
         padding: 24px;
         box-shadow: var(--shadow);
       }
-
       .brand {
         margin-bottom: 18px;
         border-radius: 24px;
@@ -53,20 +41,13 @@
         background: linear-gradient(135deg, #8ca7ff 0%, #6d87e8 100%);
         color: #111;
       }
-
       .brand-top {
         margin: 0;
         font-size: 56px;
         line-height: 0.95;
         font-family: Georgia, "Times New Roman", serif;
       }
-
-      .brand-sub {
-        margin: 4px 0 0;
-        font-size: 18px;
-        letter-spacing: 0.02em;
-      }
-
+      .brand-sub { margin: 4px 0 0; font-size: 18px; letter-spacing: 0.02em; }
       .eyebrow {
         margin: 0 0 8px;
         color: var(--accent);
@@ -75,18 +56,8 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
-      h1 {
-        margin: 0 0 8px;
-        font-size: 30px;
-      }
-
-      .lead {
-        margin: 0 0 18px;
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
+      h1 { margin: 0 0 8px; font-size: 30px; }
+      .lead { margin: 0 0 18px; color: var(--muted); line-height: 1.55; }
       .progress-bar {
         width: 100%;
         height: 10px;
@@ -95,57 +66,21 @@
         overflow: hidden;
         margin-bottom: 10px;
       }
-
       .progress-value {
         width: 0;
         height: 100%;
         background: linear-gradient(90deg, #2354d8 0%, #5b7df0 100%);
         transition: width 0.25s ease;
       }
-
-      .progress-text {
-        margin-bottom: 20px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .screen {
-        display: none;
-      }
-
-      .screen.active {
-        display: block;
-      }
-
-      .screen-title {
-        margin: 0 0 8px;
-        font-size: 24px;
-      }
-
-      .screen-note {
-        margin: 0 0 18px;
-        color: var(--muted);
-        line-height: 1.5;
-      }
-
-      .grid {
-        display: grid;
-        gap: 14px;
-      }
-
-      .grid.two {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      label {
-        display: grid;
-        gap: 8px;
-        font-size: 14px;
-        font-weight: 600;
-      }
-
-      input,
-      textarea {
+      .progress-text { margin-bottom: 20px; color: var(--muted); font-size: 13px; }
+      .screen { display: none; }
+      .screen.active { display: block; }
+      .screen-title { margin: 0 0 8px; font-size: 24px; }
+      .screen-note { margin: 0 0 18px; color: var(--muted); line-height: 1.5; }
+      .grid { display: grid; gap: 14px; }
+      .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      label { display: grid; gap: 8px; font-size: 14px; font-weight: 600; }
+      input, textarea {
         width: 100%;
         border: 1px solid var(--line);
         border-radius: 16px;
@@ -154,56 +89,19 @@
         color: var(--text);
         background: #fff;
         outline: none;
-        transition: border-color 0.2s ease, transform 0.2s ease;
       }
-
-      input:focus,
-      textarea:focus {
-        border-color: var(--accent);
-        transform: translateY(-1px);
-      }
-
-      textarea {
-        min-height: 110px;
-        resize: vertical;
-      }
-
-      .choices {
-        display: grid;
-        gap: 12px;
-      }
-
+      textarea { min-height: 110px; resize: vertical; }
+      .choices { display: grid; gap: 12px; }
       .choice {
         border: 1px solid var(--line);
         border-radius: 18px;
         padding: 16px;
         background: #fff;
         cursor: pointer;
-        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
-
-      .choice:hover {
-        transform: translateY(-1px);
-      }
-
-      .choice.selected {
-        border-color: var(--accent);
-        background: var(--accent-soft);
-      }
-
-      .choice-title {
-        margin: 0 0 4px;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .choice-text {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
+      .choice.selected { border-color: var(--accent); background: var(--accent-soft); }
+      .choice-title { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+      .choice-text { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
       .rules-box {
         border: 1px solid var(--line);
         border-radius: 20px;
@@ -212,23 +110,9 @@
         max-height: 380px;
         overflow: auto;
       }
-
-      .rules-box ol {
-        margin: 0;
-        padding-left: 22px;
-        line-height: 1.5;
-      }
-
-      .rules-box li + li {
-        margin-top: 10px;
-      }
-
-      .checks {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
+      .rules-box ol { margin: 0; padding-left: 22px; line-height: 1.5; }
+      .rules-box li + li { margin-top: 10px; }
+      .checks { display: grid; gap: 12px; margin-top: 18px; }
       .check {
         display: flex;
         gap: 10px;
@@ -238,85 +122,48 @@
         border-radius: 16px;
         background: #fff;
       }
-
-      .check input {
-        width: 18px;
-        height: 18px;
-        margin-top: 2px;
+      .check input { width: 18px; height: 18px; margin-top: 2px; }
+      .signature-panel {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 16px;
+        background: #fff;
       }
-
-      .summary {
-        display: grid;
-        gap: 10px;
+      .signature-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 10px;
       }
-
+      .signature-title { font-size: 14px; font-weight: 700; }
+      .signature-note { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+      .signature-actions { display: flex; gap: 10px; }
+      .signature-actions button { padding: 10px 14px; border-radius: 12px; font-size: 13px; }
+      .signature-canvas-wrap {
+        border: 1px dashed #cdbda9;
+        border-radius: 18px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 245, 238, 0.96)),
+          repeating-linear-gradient(180deg, transparent 0, transparent 31px, rgba(35, 84, 216, 0.06) 31px, rgba(35, 84, 216, 0.06) 32px);
+      }
+      #signature-canvas { display: block; width: 100%; height: 190px; touch-action: none; cursor: crosshair; }
+      .signature-status { margin-top: 10px; font-size: 13px; color: var(--muted); }
+      .summary { display: grid; gap: 10px; }
       .summary-item {
         border: 1px solid var(--line);
         border-radius: 16px;
         padding: 14px 16px;
         background: #fff;
       }
-
-      .summary-label {
-        margin-bottom: 4px;
-        font-size: 12px;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-
-      .summary-value {
-        font-size: 16px;
-        line-height: 1.45;
-      }
-
-      .nav {
-        display: flex;
-        gap: 12px;
-        margin-top: 22px;
-      }
-
-      button {
-        border: 0;
-        border-radius: 16px;
-        padding: 14px 18px;
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
-      }
-
-      button:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-secondary {
-        flex: 1;
-        background: #ebe1d5;
-        color: var(--text);
-      }
-
-      .btn-primary {
-        flex: 1;
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-primary:hover {
-        background: #1b45b5;
-      }
-
-      .btn-secondary:hover {
-        background: #e0d5c8;
-      }
-
-      .btn-secondary:disabled,
-      .btn-primary:disabled {
-        opacity: 0.45;
-        cursor: default;
-        transform: none;
-      }
-
+      .summary-label { margin-bottom: 4px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+      .summary-value { font-size: 16px; line-height: 1.45; }
+      .nav { display: flex; gap: 12px; margin-top: 22px; }
+      button { border: 0; border-radius: 16px; padding: 14px 18px; font: inherit; font-weight: 700; cursor: pointer; }
+      .btn-secondary { flex: 1; background: #ebe1d5; color: var(--text); }
+      .btn-primary { flex: 1; background: var(--accent); color: #fff; }
+      .btn-secondary:disabled, .btn-primary:disabled { opacity: 0.45; cursor: default; }
       .preview {
         display: none;
         margin-top: 18px;
@@ -326,23 +173,11 @@
         background: #faf4ec;
         white-space: pre-wrap;
       }
-
       @media (max-width: 640px) {
-        .grid.two {
-          grid-template-columns: 1fr;
-        }
-
-        .brand-top {
-          font-size: 42px;
-        }
-
-        h1 {
-          font-size: 26px;
-        }
-
-        .screen-title {
-          font-size: 22px;
-        }
+        .grid.two { grid-template-columns: 1fr; }
+        .brand-top { font-size: 42px; }
+        h1 { font-size: 26px; }
+        .screen-title { font-size: 22px; }
       }
     </style>
   </head>
@@ -353,250 +188,125 @@
           <p class="brand-top">2Split</p>
           <p class="brand-sub">pole dance studio</p>
         </div>
-
         <p class="eyebrow">Telegram Mini App</p>
         <h1>Анкета та правила 2Split</h1>
-        <p class="lead">
-          Це адаптація твоєї PDF-анкети в форматі Mini App. Клієнт проходить анкету в
-          Telegram, погоджується з правилами та відправляє все одразу в бота.
-        </p>
-
-        <div class="progress-bar">
-          <div id="progress-value" class="progress-value"></div>
-        </div>
-        <div id="progress-text" class="progress-text">Крок 1 із 4</div>
+        <p class="lead">Це адаптація PDF-анкети у форматі Mini App. Клієнт проходить анкету в Telegram, погоджується з правилами та ставить підпис прямо на екрані.</p>
+        <div class="progress-bar"><div id="progress-value" class="progress-value"></div></div>
+        <div id="progress-text" class="progress-text">Крок 1 із 6</div>
 
         <section class="screen active" data-step="0">
           <h2 class="screen-title">Основна анкета</h2>
-          <p class="screen-note">
-            Привіт, <span id="telegram-user">гостю</span>. Спочатку зберемо основні дані.
-          </p>
-
+          <p class="screen-note">Привіт, <span id="telegram-user">гостю</span>. Спочатку зберемо основні дані.</p>
           <div class="grid">
-            <label>
-              ПІБ
-              <input id="full-name" type="text" placeholder="Прізвище Ім'я По батькові" />
-            </label>
-
+            <label>ПІБ<input id="full-name" type="text" placeholder="Прізвище Ім'я По батькові" /></label>
             <div class="grid two">
-              <label>
-                Дата народження
-                <input id="birth-date" type="date" />
-              </label>
-
-              <label>
-                Професія
-                <input id="profession" type="text" placeholder="Наприклад: дизайнер" />
-              </label>
+              <label>Дата народження<input id="birth-date" type="date" /></label>
+              <label>Професія<input id="profession" type="text" placeholder="Наприклад: дизайнер" /></label>
             </div>
-
-            <label>
-              Контакти (моб.тел)
-              <input id="phone" type="tel" placeholder="+380..." />
-            </label>
+            <label>Контакти (моб.тел)<input id="phone" type="tel" placeholder="+380..." /></label>
           </div>
         </section>
 
         <section class="screen" data-step="1">
           <h2 class="screen-title">Мета та знайомство зі студією</h2>
           <p class="screen-note">Вибери, що найближче підходить саме тобі.</p>
-
           <div class="grid">
             <div>
               <label style="margin-bottom: 8px;">Яка мета відвідування наших тренувань?</label>
               <div id="goal-options" class="choices">
-                <div class="choice" data-value="Поліпшити фізичну форму">
-                  <p class="choice-title">Поліпшити фізичну форму</p>
-                  <p class="choice-text">Зосередитись на силі, тонусі та витривалості.</p>
-                </div>
-                <div class="choice" data-value="Досконально освоїти танець на пілоні">
-                  <p class="choice-title">Освоїти танець на пілоні</p>
-                  <p class="choice-text">Хочу працювати над технікою та елементами.</p>
-                </div>
-                <div class="choice" data-value="Стати пластичніше та сексуальніше">
-                  <p class="choice-title">Стати пластичніше та сексуальніше</p>
-                  <p class="choice-text">Більше жіночності, пластики та впевненості.</p>
-                </div>
-                <div class="choice" data-value="Інша мета">
-                  <p class="choice-title">Свій варіант</p>
-                  <p class="choice-text">Можна вказати власну мотивацію.</p>
-                </div>
+                <div class="choice" data-value="Поліпшити фізичну форму"><p class="choice-title">Поліпшити фізичну форму</p><p class="choice-text">Зосередитись на силі, тонусі та витривалості.</p></div>
+                <div class="choice" data-value="Досконально освоїти танець на пілоні"><p class="choice-title">Освоїти танець на пілоні</p><p class="choice-text">Хочу працювати над технікою та елементами.</p></div>
+                <div class="choice" data-value="Стати пластичніше та сексуальніше"><p class="choice-title">Стати пластичніше та сексуальніше</p><p class="choice-text">Більше жіночності, пластики та впевненості.</p></div>
+                <div class="choice" data-value="Інша мета"><p class="choice-title">Свій варіант</p><p class="choice-text">Можна вказати власну мотивацію.</p></div>
               </div>
             </div>
-
-            <label id="goal-custom-wrap" style="display: none;">
-              Свій варіант мети
-              <input id="goal-custom" type="text" placeholder="Напиши свою мету" />
-            </label>
-
+            <label id="goal-custom-wrap" style="display: none;">Свій варіант мети<input id="goal-custom" type="text" placeholder="Напиши свою мету" /></label>
             <div>
               <label style="margin-bottom: 8px;">Як Ви про нас дізналися?</label>
               <div id="source-options" class="choices">
-                <div class="choice" data-value="Facebook">
-                  <p class="choice-title">Facebook</p>
-                </div>
-                <div class="choice" data-value="Instagram">
-                  <p class="choice-title">Instagram</p>
-                </div>
-                <div class="choice" data-value="Google">
-                  <p class="choice-title">Google</p>
-                </div>
-                <div class="choice" data-value="Від знайомих">
-                  <p class="choice-title">Від знайомих</p>
-                </div>
-                <div class="choice" data-value="Реклама на вулиці">
-                  <p class="choice-title">Реклама на вулиці</p>
-                </div>
-                <div class="choice" data-value="Інше джерело">
-                  <p class="choice-title">Інший варіант</p>
-                </div>
+                <div class="choice" data-value="Facebook"><p class="choice-title">Facebook</p></div>
+                <div class="choice" data-value="Instagram"><p class="choice-title">Instagram</p></div>
+                <div class="choice" data-value="Google"><p class="choice-title">Google</p></div>
+                <div class="choice" data-value="Від знайомих"><p class="choice-title">Від знайомих</p></div>
+                <div class="choice" data-value="Реклама на вулиці"><p class="choice-title">Реклама на вулиці</p></div>
+                <div class="choice" data-value="Інше джерело"><p class="choice-title">Інший варіант</p></div>
               </div>
             </div>
-
-            <label id="source-custom-wrap" style="display: none;">
-              Інший варіант
-              <input id="source-custom" type="text" placeholder="Напиши, звідки дізналися" />
-            </label>
+            <label id="source-custom-wrap" style="display: none;">Інший варіант<input id="source-custom" type="text" placeholder="Напиши, звідки дізналися" /></label>
           </div>
         </section>
 
         <section class="screen" data-step="2">
           <h2 class="screen-title">Здоров'я та згода</h2>
-          <p class="screen-note">
-            Тут повторюємо важливі поля з анкети й цифровий аналог підпису.
-          </p>
-
+          <p class="screen-note">Тут повторюємо важливі поля з анкети й цифровий аналог письмової згоди.</p>
           <div class="grid">
             <div>
-              <label style="margin-bottom: 8px;">
-                Чи маєте Ви захворювання, пов'язані з функціями опорно-рухомого апарату,
-                м'язів або серцево-судинної системи?
-              </label>
+              <label style="margin-bottom: 8px;">Чи маєте Ви захворювання, пов'язані з функціями опорно-рухомого апарату, м'язів або серцево-судинної системи?</label>
               <div id="health-options" class="choices">
-                <div class="choice" data-value="Ні">
-                  <p class="choice-title">Ні</p>
-                </div>
-                <div class="choice" data-value="Так">
-                  <p class="choice-title">Так</p>
-                  <p class="choice-text">Нижче можна коротко описати, якщо потрібно.</p>
-                </div>
+                <div class="choice" data-value="Ні"><p class="choice-title">Ні</p></div>
+                <div class="choice" data-value="Так"><p class="choice-title">Так</p><p class="choice-text">Нижче можна коротко описати, якщо потрібно.</p></div>
               </div>
             </div>
-
-            <label id="health-details-wrap" style="display: none;">
-              Уточнення щодо здоров'я
-              <textarea
-                id="health-details"
-                placeholder="Коротко опиши особливості або обмеження"
-              ></textarea>
-            </label>
-
-            <label>
-              Я, ...
-              <input id="consent-name" type="text" placeholder="Повторно введи ПІБ для згоди" />
-            </label>
-
+            <label id="health-details-wrap" style="display: none;">Уточнення щодо здоров'я<textarea id="health-details" placeholder="Коротко опиши особливості або обмеження"></textarea></label>
+            <label>Я, ...<input id="consent-name" type="text" placeholder="Повторно введи ПІБ для згоди" /></label>
             <div class="checks">
-              <label class="check">
-                <input id="personal-data-consent" type="checkbox" />
-                <span>
-                  Даю свою згоду на зберігання та обробку моїх персональних даних: ПІБ,
-                  контактний телефон, адреса електронної пошти.
-                </span>
-              </label>
+              <label class="check"><input id="personal-data-consent" type="checkbox" /><span>Даю свою згоду на зберігання та обробку моїх персональних даних: ПІБ, контактний телефон, адреса електронної пошти.</span></label>
             </div>
           </div>
         </section>
 
         <section class="screen" data-step="3">
-          <h2 class="screen-title">Правила студії</h2>
-          <p class="screen-note">
-            Ознайомся з правилами. Після цього можна підтвердити згоду й відправити анкету.
-          </p>
-
-          <div class="rules-box">
-            <ol>
-              <li>Пропуском для відвідування заняття є абонемент або разова оплата заняття.</li>
-              <li>Заборонено заходити в танцювальний зал у взутті, яке носилося на вулиці.</li>
-              <li>
-                Слід попередити тренера про медичні протипоказання. Заняття розраховані на
-                здорових людей. Якщо погано почуваєтесь, на тренування краще не приходити.
-              </li>
-              <li>Для дотримання правил безпеки на занятті забороняється користуватись мобільними телефонами.</li>
-              <li>
-                Виконання вправ без попередньої розминки забороняється, а в разі запізнення
-                розминку потрібно виконати самостійно.
-              </li>
-              <li>
-                Необхідно виконувати вимоги тренера. Якщо клієнт порушує правила, студія має
-                право відмовити у відвідуванні занять.
-              </li>
-              <li>Забороняється заважати проведенню заняття та приводити сторонніх людей у студію.</li>
-              <li>Фото і відео зйомка в танцювальній школі заборонена без дозволу адміністрації.</li>
-              <li>За речі, залишені без нагляду або в шафках, адміністрація відповідальності не несе.</li>
-              <li>
-                Студія не несе відповідальності за будь-які технічні незручності, пов'язані з
-                роботою комунальних служб або будівлі.
-              </li>
-              <li>Адміністрація студії залишає за собою право вносити зміни в розклад занять.</li>
-              <li>
-                Якщо клієнт залишив заняття через заміну тренера, повернення грошей не
-                здійснюється і дія абонемента не продовжується.
-              </li>
-              <li>Оплата разового заняття або абонемента відбувається перед початком занять.</li>
-              <li>
-                Термін дії абонемента — 30 календарних днів. Якщо заняття не відвідувались,
-                абонемент не продовжується і кошти не повертаються.
-              </li>
-              <li>
-                При порушенні правил студія може розглянути питання про неможливість
-                подальшого відвідування занять. Оплата не повертається.
-              </li>
-              <li>
-                Групове заняття проводиться за наявності мінімум 3 осіб. Якщо прийшла тільки
-                одна людина, заняття не проводиться.
-              </li>
-              <li>
-                Індивідуальне заняття проводиться за попереднім записом і передоплатою 100%.
-                При скасуванні менше ніж за 3 години передоплата згорає.
-              </li>
-              <li>
-                Час Вашого індивідуального заняття починається з того моменту, коли Ви на нього
-                записані. Запізнення не продовжує заняття.
-              </li>
-              <li>
-                Якщо Ви записалися заздалегідь, але не можете прийти, потрібно попередити
-                мінімум за 24 години до початку тренування.
-              </li>
-              <li>Оренда залів здійснюється на підставі підписаних між сторонами договорів.</li>
-              <li>
-                Абонемент іменний і передача іншій особі не допускається. У разі передачі
-                абонемент вилучається і кошти не повертаються.
-              </li>
-              <li>Адміністрація студії залишає за собою право вносити нові пункти в ці правила.</li>
-              <li>
-                Оплата абонемента або разового заняття підтверджує повну згоду клієнта з усіма
-                переліченими правилами.
-              </li>
-            </ol>
-          </div>
-
-          <div class="checks">
-            <label class="check">
-              <input id="rules-consent" type="checkbox" />
-              <span>
-                Я підтверджую, що уважно ознайомився/ознайомилась та погоджуюсь з правилами
-                танцювальної студії 2Split.
-              </span>
-            </label>
+          <h2 class="screen-title">Підпис пальцем</h2>
+          <p class="screen-note">Тут клієнт може поставити підпис прямо на екрані пальцем. Ми збережемо його в компактному цифровому вигляді разом з анкетою.</p>
+          <div class="signature-panel">
+            <div class="signature-head">
+              <div class="signature-title">Поле підпису</div>
+              <div class="signature-actions"><button id="clear-signature" class="btn-secondary" type="button">Очистити</button></div>
+            </div>
+            <p class="signature-note">Попроси клієнта розписатися пальцем або стилусом. Для переходу далі підпис має бути намальований хоча б один раз.</p>
+            <div class="signature-canvas-wrap"><canvas id="signature-canvas"></canvas></div>
+            <div id="signature-status" class="signature-status">Підпис ще не додано.</div>
           </div>
         </section>
 
         <section class="screen" data-step="4">
+          <h2 class="screen-title">Правила студії</h2>
+          <p class="screen-note">Ознайомся з правилами. Після цього можна підтвердити згоду й відправити анкету.</p>
+          <div class="rules-box">
+            <ol>
+              <li>Пропуском для відвідування заняття є абонемент або разова оплата заняття.</li>
+              <li>Заборонено заходити в танцювальний зал у взутті, яке носилося на вулиці.</li>
+              <li>Слід попередити тренера про медичні протипоказання. Заняття розраховані на здорових людей. Якщо погано почуваєтесь, на тренування краще не приходити.</li>
+              <li>Для дотримання правил безпеки на занятті забороняється користуватись мобільними телефонами.</li>
+              <li>Виконання вправ без попередньої розминки забороняється, а в разі запізнення розминку потрібно виконати самостійно.</li>
+              <li>Необхідно виконувати вимоги тренера. Якщо клієнт порушує правила, студія має право відмовити у відвідуванні занять.</li>
+              <li>Забороняється заважати проведенню заняття та приводити сторонніх людей у студію.</li>
+              <li>Фото і відео зйомка в танцювальній школі заборонена без дозволу адміністрації.</li>
+              <li>За речі, залишені без нагляду або в шафках, адміністрація відповідальності не несе.</li>
+              <li>Студія не несе відповідальності за будь-які технічні незручності, пов'язані з роботою комунальних служб або будівлі.</li>
+              <li>Адміністрація студії залишає за собою право вносити зміни в розклад занять.</li>
+              <li>Якщо клієнт залишив заняття через заміну тренера, повернення грошей не здійснюється і дія абонемента не продовжується.</li>
+              <li>Оплата разового заняття або абонемента відбувається перед початком занять.</li>
+              <li>Термін дії абонемента — 30 календарних днів. Якщо заняття не відвідувались, абонемент не продовжується і кошти не повертаються.</li>
+              <li>При порушенні правил студія може розглянути питання про неможливість подальшого відвідування занять. Оплата не повертається.</li>
+              <li>Групове заняття проводиться за наявності мінімум 3 осіб. Якщо прийшла тільки одна людина, заняття не проводиться.</li>
+              <li>Індивідуальне заняття проводиться за попереднім записом і передоплатою 100%. При скасуванні менше ніж за 3 години передоплата згорає.</li>
+              <li>Час Вашого індивідуального заняття починається з того моменту, коли Ви на нього записані. Запізнення не продовжує заняття.</li>
+              <li>Якщо Ви записалися заздалегідь, але не можете прийти, потрібно попередити мінімум за 24 години до початку тренування.</li>
+              <li>Оренда залів здійснюється на підставі підписаних між сторонами договорів.</li>
+              <li>Абонемент іменний і передача іншій особі не допускається. У разі передачі абонемент вилучається і кошти не повертаються.</li>
+              <li>Адміністрація студії залишає за собою право вносити нові пункти в ці правила.</li>
+              <li>Оплата абонемента або разового заняття підтверджує повну згоду клієнта з усіма переліченими правилами.</li>
+            </ol>
+          </div>
+          <div class="checks">
+            <label class="check"><input id="rules-consent" type="checkbox" /><span>Я підтверджую, що уважно ознайомився/ознайомилась та погоджуюсь з правилами танцювальної студії 2Split.</span></label>
+          </div>
+        </section>
+
+        <section class="screen" data-step="5">
           <h2 class="screen-title">Перевірка перед відправкою</h2>
-          <p class="screen-note">
-            Це фінальний екран перед відправкою в бота. Тут можна швидко перевірити всі дані.
-          </p>
+          <p class="screen-note">Це фінальний екран перед відправкою в бота. Тут можна швидко перевірити всі дані.</p>
           <div id="summary" class="summary"></div>
         </section>
 
@@ -611,9 +321,8 @@
 
     <script>
       const tg = window.Telegram?.WebApp;
-      const totalSteps = 5;
+      const totalSteps = 6;
       let currentStep = 0;
-
       const data = {
         action: "split_questionnaire",
         telegram_name: tg?.initDataUnsafe?.user?.first_name || "гiсть",
@@ -628,51 +337,146 @@
         consent_name: "",
         personal_data_consent: false,
         rules_consent: false,
+        signature_data: "",
+        signature_points_count: 0,
+        signed_at: "",
       };
-
       const screens = Array.from(document.querySelectorAll(".screen"));
       const progressValue = document.getElementById("progress-value");
       const progressText = document.getElementById("progress-text");
       const backBtn = document.getElementById("back-btn");
       const nextBtn = document.getElementById("next-btn");
       const preview = document.getElementById("preview");
-
+      const signatureCanvas = document.getElementById("signature-canvas");
+      const signatureStatus = document.getElementById("signature-status");
+      const clearSignatureBtn = document.getElementById("clear-signature");
+      const signatureCtx = signatureCanvas.getContext("2d");
+      const signatureStrokes = [];
+      let currentStroke = null;
+      let isDrawing = false;
       document.getElementById("telegram-user").innerText = data.telegram_name;
-
-      if (tg) {
-        tg.ready();
-        tg.expand();
-      }
+      if (tg) { tg.ready(); tg.expand(); }
 
       function setChoice(groupId, clicked, key, customWrapId = null, customValue = "") {
         const items = document.querySelectorAll(`#${groupId} .choice`);
         items.forEach((item) => item.classList.remove("selected"));
         clicked.classList.add("selected");
         data[key] = clicked.dataset.value;
-
         if (customWrapId) {
-          const wrap = document.getElementById(customWrapId);
-          wrap.style.display = clicked.dataset.value === customValue ? "grid" : "none";
+          document.getElementById(customWrapId).style.display =
+            clicked.dataset.value === customValue ? "grid" : "none";
         }
       }
 
       document.querySelectorAll("#goal-options .choice").forEach((item) => {
-        item.addEventListener("click", () =>
-          setChoice("goal-options", item, "goal", "goal-custom-wrap", "Інша мета")
-        );
+        item.addEventListener("click", () => setChoice("goal-options", item, "goal", "goal-custom-wrap", "Інша мета"));
       });
-
       document.querySelectorAll("#source-options .choice").forEach((item) => {
-        item.addEventListener("click", () =>
-          setChoice("source-options", item, "source", "source-custom-wrap", "Інше джерело")
-        );
+        item.addEventListener("click", () => setChoice("source-options", item, "source", "source-custom-wrap", "Інше джерело"));
+      });
+      document.querySelectorAll("#health-options .choice").forEach((item) => {
+        item.addEventListener("click", () => setChoice("health-options", item, "health_status", "health-details-wrap", "Так"));
       });
 
-      document.querySelectorAll("#health-options .choice").forEach((item) => {
-        item.addEventListener("click", () =>
-          setChoice("health-options", item, "health_status", "health-details-wrap", "Так")
-        );
+      function setupCanvas() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const rect = signatureCanvas.getBoundingClientRect();
+        signatureCanvas.width = Math.floor(rect.width * ratio);
+        signatureCanvas.height = Math.floor(rect.height * ratio);
+        signatureCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        signatureCtx.lineCap = "round";
+        signatureCtx.lineJoin = "round";
+        signatureCtx.lineWidth = 2.2;
+        signatureCtx.strokeStyle = "#1c1c1c";
+        redrawSignature();
+      }
+
+      function drawStroke(stroke) {
+        if (!stroke || !stroke.length) return;
+        signatureCtx.beginPath();
+        signatureCtx.moveTo(stroke[0][0], stroke[0][1]);
+        for (let i = 1; i < stroke.length; i += 1) {
+          signatureCtx.lineTo(stroke[i][0], stroke[i][1]);
+        }
+        signatureCtx.stroke();
+      }
+
+      function redrawSignature() {
+        signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+        signatureStrokes.forEach(drawStroke);
+      }
+
+      function pointerPosition(event) {
+        const rect = signatureCanvas.getBoundingClientRect();
+        return [
+          Math.round((event.clientX - rect.left) * 10) / 10,
+          Math.round((event.clientY - rect.top) * 10) / 10,
+        ];
+      }
+
+      function addPointToStroke(stroke, point) {
+        const last = stroke[stroke.length - 1];
+        if (!last) {
+          stroke.push(point);
+          return;
+        }
+        const dx = point[0] - last[0];
+        const dy = point[1] - last[1];
+        if (Math.sqrt(dx * dx + dy * dy) >= 2.2) {
+          stroke.push(point);
+        }
+      }
+
+      function updateSignatureData() {
+        const encoded = signatureStrokes
+          .filter((stroke) => stroke.length > 0)
+          .map((stroke) => stroke.map((point) => `${Math.round(point[0])},${Math.round(point[1])}`).join(";"))
+          .join("|");
+        data.signature_data = encoded;
+        data.signature_points_count = signatureStrokes.reduce((sum, stroke) => sum + stroke.length, 0);
+        data.signed_at = encoded ? new Date().toISOString() : "";
+        signatureStatus.innerText = encoded
+          ? `Підпис збережено. Точок: ${data.signature_points_count}`
+          : "Підпис ще не додано.";
+      }
+
+      function startDraw(event) {
+        isDrawing = true;
+        currentStroke = [];
+        signatureStrokes.push(currentStroke);
+        addPointToStroke(currentStroke, pointerPosition(event));
+        redrawSignature();
+      }
+
+      function moveDraw(event) {
+        if (!isDrawing || !currentStroke) return;
+        addPointToStroke(currentStroke, pointerPosition(event));
+        redrawSignature();
+      }
+
+      function endDraw() {
+        if (!isDrawing) return;
+        isDrawing = false;
+        if (currentStroke && currentStroke.length < 2) {
+          currentStroke.push([...currentStroke[0]]);
+        }
+        currentStroke = null;
+        updateSignatureData();
+      }
+
+      signatureCanvas.addEventListener("pointerdown", (event) => { event.preventDefault(); startDraw(event); });
+      signatureCanvas.addEventListener("pointermove", (event) => { event.preventDefault(); moveDraw(event); });
+      signatureCanvas.addEventListener("pointerup", endDraw);
+      signatureCanvas.addEventListener("pointerleave", endDraw);
+      signatureCanvas.addEventListener("pointercancel", endDraw);
+      clearSignatureBtn.addEventListener("click", () => {
+        signatureStrokes.length = 0;
+        currentStroke = null;
+        isDrawing = false;
+        updateSignatureData();
+        redrawSignature();
       });
+      window.addEventListener("resize", setupCanvas);
 
       function collectData() {
         data.full_name = document.getElementById("full-name").value.trim();
@@ -682,53 +486,30 @@
         data.consent_name = document.getElementById("consent-name").value.trim();
         data.personal_data_consent = document.getElementById("personal-data-consent").checked;
         data.rules_consent = document.getElementById("rules-consent").checked;
-
         const goalCustom = document.getElementById("goal-custom").value.trim();
         const sourceCustom = document.getElementById("source-custom").value.trim();
         const healthDetails = document.getElementById("health-details").value.trim();
-
-        if (data.goal === "Інша мета" && goalCustom) {
-          data.goal = goalCustom;
-        }
-
-        if (data.source === "Інше джерело" && sourceCustom) {
-          data.source = sourceCustom;
-        }
-
+        if (data.goal === "Інша мета" && goalCustom) data.goal = goalCustom;
+        if (data.source === "Інше джерело" && sourceCustom) data.source = sourceCustom;
         data.health_details = healthDetails;
       }
 
       function validateStep() {
         collectData();
-
-        if (currentStep === 0) {
-          return Boolean(data.full_name && data.birth_date && data.phone);
-        }
-
-        if (currentStep === 1) {
-          return Boolean(data.goal && data.source);
-        }
-
+        if (currentStep === 0) return Boolean(data.full_name && data.birth_date && data.phone);
+        if (currentStep === 1) return Boolean(data.goal && data.source);
         if (currentStep === 2) {
-          if (!data.health_status || !data.consent_name || !data.personal_data_consent) {
-            return false;
-          }
-          if (data.health_status === "Так" && !data.health_details) {
-            return false;
-          }
+          if (!data.health_status || !data.consent_name || !data.personal_data_consent) return false;
+          if (data.health_status === "Так" && !data.health_details) return false;
           return true;
         }
-
-        if (currentStep === 3) {
-          return Boolean(data.rules_consent);
-        }
-
+        if (currentStep === 3) return Boolean(data.signature_data);
+        if (currentStep === 4) return Boolean(data.rules_consent);
         return true;
       }
 
       function renderSummary() {
         collectData();
-
         const fields = [
           ["ПІБ", data.full_name || "-"],
           ["Дата народження", data.birth_date || "-"],
@@ -739,22 +520,14 @@
           ["Стан здоров'я", data.health_status || "-"],
           ["Уточнення щодо здоров'я", data.health_details || "Не вказано"],
           ["ПІБ для згоди", data.consent_name || "-"],
-          [
-            "Згода на обробку даних",
-            data.personal_data_consent ? "Так, надано" : "Ні",
-          ],
+          ["Підпис пальцем", data.signature_data ? "Підпис додано" : "Немає"],
+          ["Точок у підписі", data.signature_points_count ? String(data.signature_points_count) : "-"],
+          ["Час підпису", data.signed_at || "-"],
+          ["Згода на обробку даних", data.personal_data_consent ? "Так, надано" : "Ні"],
           ["Згода з правилами", data.rules_consent ? "Так, погоджено" : "Ні"],
         ];
-
         document.getElementById("summary").innerHTML = fields
-          .map(
-            ([label, value]) => `
-              <div class="summary-item">
-                <div class="summary-label">${label}</div>
-                <div class="summary-value">${value}</div>
-              </div>
-            `
-          )
+          .map(([label, value]) => `<div class="summary-item"><div class="summary-label">${label}</div><div class="summary-value">${value}</div></div>`)
           .join("");
       }
 
@@ -762,57 +535,44 @@
         screens.forEach((screen, index) => {
           screen.classList.toggle("active", index === currentStep);
         });
-
         const visibleStep = Math.min(currentStep + 1, totalSteps);
         progressText.innerText = `Крок ${visibleStep} із ${totalSteps}`;
         progressValue.style.width = `${(visibleStep / totalSteps) * 100}%`;
-
         backBtn.disabled = currentStep === 0;
         nextBtn.innerText = currentStep === totalSteps - 1 ? "Відправити в бота" : "Далі";
-
-        if (currentStep === totalSteps - 1) {
-          renderSummary();
-        }
+        if (currentStep === totalSteps - 1) renderSummary();
       }
 
       function sendPayload() {
         collectData();
-
         if (tg?.sendData) {
           tg.sendData(JSON.stringify(data));
           tg.close();
           return;
         }
-
         preview.style.display = "block";
-        preview.textContent =
-          "Передперегляд браузера. Дані, які підуть у бота:\n\n" +
-          JSON.stringify(data, null, 2);
+        preview.textContent = "Передперегляд браузера. Дані, які підуть у бота:\n\n" + JSON.stringify(data, null, 2);
       }
 
       nextBtn.addEventListener("click", () => {
-        if (!validateStep()) {
-          return;
-        }
-
+        if (!validateStep()) return;
         if (currentStep < totalSteps - 1) {
           currentStep += 1;
           updateStep();
           return;
         }
-
         sendPayload();
       });
 
       backBtn.addEventListener("click", () => {
-        if (currentStep === 0) {
-          return;
-        }
+        if (currentStep === 0) return;
         currentStep -= 1;
         updateStep();
       });
 
       updateStep();
+      updateSignatureData();
+      setupCanvas();
     </script>
   </body>
 </html>
