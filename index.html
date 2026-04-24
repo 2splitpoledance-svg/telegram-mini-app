@@ -381,6 +381,9 @@
       function setupCanvas() {
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
         const rect = signatureCanvas.getBoundingClientRect();
+        if (!rect.width || !rect.height) {
+          return;
+        }
         signatureCanvas.width = Math.floor(rect.width * ratio);
         signatureCanvas.height = Math.floor(rect.height * ratio);
         signatureCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -540,6 +543,9 @@
         progressValue.style.width = `${(visibleStep / totalSteps) * 100}%`;
         backBtn.disabled = currentStep === 0;
         nextBtn.innerText = currentStep === totalSteps - 1 ? "Відправити в бота" : "Далі";
+        if (currentStep === 3) {
+          requestAnimationFrame(setupCanvas);
+        }
         if (currentStep === totalSteps - 1) renderSummary();
       }
 
