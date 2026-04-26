@@ -611,6 +611,7 @@
         personal_data_consent: false,
         rules_consent: false,
         signature_data: "",
+        signature_png_data: "",
         signature_points_count: 0,
         signed_at: "",
       };
@@ -724,6 +725,9 @@
           .join("|");
 
         data.signature_data = encoded;
+        data.signature_png_data = encoded
+          ? signatureCanvas.toDataURL("image/png")
+          : "";
         data.signature_points_count = signatureStrokes.reduce((sum, stroke) => sum + stroke.length, 0);
         data.signed_at = encoded ? new Date().toISOString() : "";
         signatureStatus.innerText = encoded
