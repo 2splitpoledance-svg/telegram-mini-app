@@ -593,8 +593,11 @@
 
     <script>
       const tg = window.Telegram?.WebApp;
+      const APPS_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbwbJGXot22QIjlniMigsxbFkvL-fzewUtQ4E1oLXCPuLt2-I3kwuQcjqTAMfnc6UJY7KQ/exec";
       const totalSteps = 6;
       let currentStep = 0;
+      let isSubmitting = false;
 
       const data = {
         action: "split_questionnaire",
@@ -611,7 +614,6 @@
         personal_data_consent: false,
         rules_consent: false,
         signature_data: "",
-        signature_png_data: "",
         signature_points_count: 0,
         signed_at: "",
       };
@@ -725,9 +727,6 @@
           .join("|");
 
         data.signature_data = encoded;
-        data.signature_png_data = encoded
-          ? signatureCanvas.toDataURL("image/png")
-          : "";
         data.signature_points_count = signatureStrokes.reduce((sum, stroke) => sum + stroke.length, 0);
         data.signed_at = encoded ? new Date().toISOString() : "";
         signatureStatus.innerText = encoded
@@ -880,16 +879,78 @@
       }
 
       function sendPayload() {
-        collectData();
-        if (tg?.sendData) {
-          tg.sendData(JSON.stringify(data));
-          tg.close();
+        if (isSubmitting) {
           return;
         }
 
-        preview.style.display = "block";
-        preview.textContent =
-          "Попередній перегляд даних анкети:\n\n" + JSON.stringify(data, null, 2);
+        collectData();
+        isSubmitting = true;
+        nextBtn.disabled = true;
+        backBtn.disabled = true;
+        nextBtn.innerText = "Зберігаємо...";
+        preview.style.display = "none";
+
+        const submissionId = `2split_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+        const payload = {
+          ...data,
+          submission_id: submissionId,
+          signature_png_data: signatureCanvas.toDataURL("image/png")
+        };
+
+        fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(async (response) => {
+            const responseText = await response.text();
+            let responseData = {};
+            try {
+              responseData = responseText ? JSON.parse(responseText) : {};
+            } catch (error) {
+              throw new Error("Сервер повернув некоректну відповідь.");
+            }
+
+            if (!response.ok || responseData.ok === false) {
+              throw new Error(responseData.error || "Не вдалося зберегти анкету.");
+            }
+
+            if (tg?.sendData) {
+              tg.sendData(
+                JSON.stringify({
+                  action: "split_questionnaire_saved",
+                  submission_id: submissionId,
+                  full_name: data.full_name,
+                  phone: data.phone
+                })
+              );
+              tg.close();
+              return;
+            }
+
+            preview.style.display = "block";
+            preview.textContent =
+              "Анкету успішно збережено.\n\n" +
+              JSON.stringify(
+                {
+                  submission_id: submissionId,
+                  docFileUrl: responseData.docFileUrl || "",
+                  pdfFileUrl: responseData.pdfFileUrl || ""
+                },
+                null,
+                2
+              );
+          })
+          .catch((error) => {
+            preview.style.display = "block";
+            preview.textContent = `Помилка збереження: ${error.message}`;
+            nextBtn.disabled = false;
+            backBtn.disabled = currentStep === 0;
+            nextBtn.innerText = "Підтвердити та відправити";
+            isSubmitting = false;
+          });
       }
 
       nextBtn.addEventListener("click", () => {
