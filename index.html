@@ -421,7 +421,11 @@
       let ok = true;
 
       if (stepIndex === 0) {
-        if (data.full_name.length < 5) { setFieldError("full_name","Вкажіть повне ім'я та прізвище."); ok = false; }
+        const fullNameParts = data.full_name.split(/\s+/).filter(Boolean);
+        if (data.full_name.length < 8 || fullNameParts.length < 3) {
+          setFieldError("full_name","Вкажіть прізвище, ім'я та по батькові повністю.");
+          ok = false;
+        }
         if (!data.birth_date) { setFieldError("birth_date","Оберіть дату народження."); ok = false; }
         else if (new Date(data.birth_date) > new Date()) { setFieldError("birth_date","Дата не може бути в майбутньому."); ok = false; }
         if (data.profession.length < 2) { setFieldError("profession","Заповніть професію."); ok = false; }
