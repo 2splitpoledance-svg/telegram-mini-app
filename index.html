@@ -375,8 +375,36 @@
     function actualGoal() { return checkedValue("goal") === "Інша мета" ? textValue("goal_custom") : checkedValue("goal"); }
     function actualSource() { return checkedValue("source") === "Інше джерело" ? textValue("source_custom") : checkedValue("source"); }
 
+    function collectDeviceInfo() {
+      const nav = window.navigator || {};
+      const screenInfo = window.screen || {};
+      const tgPlatform = tg?.platform || "";
+      const language = nav.language || "";
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      const screenSize = screenInfo.width && screenInfo.height ? `${screenInfo.width}x${screenInfo.height}` : "";
+      const userAgent = nav.userAgent || "";
+
+      const parts = [
+        tgPlatform ? `Telegram: ${tgPlatform}` : "",
+        language ? `Мова: ${language}` : "",
+        timeZone ? `Часовий пояс: ${timeZone}` : "",
+        screenSize ? `Екран: ${screenSize}` : "",
+        userAgent ? `User-Agent: ${userAgent}` : ""
+      ].filter(Boolean);
+
+      return {
+        tg_platform: tgPlatform,
+        device_language: language,
+        device_timezone: timeZone,
+        device_screen: screenSize,
+        device_user_agent: userAgent,
+        device_info: parts.join(" | ")
+      };
+    }
+
     function getData() {
       const user = tg?.initDataUnsafe?.user || {};
+      const deviceInfo = collectDeviceInfo();
       return {
         submission_id: `SUB-${Date.now().toString(36).toUpperCase()}`,
         action: "split_questionnaire",
@@ -395,7 +423,13 @@
         signature_points_count: countSignaturePoints(),
         signed_at: new Date().toISOString(),
         signature_data: signatureData(),
-        signature_png_data: canvas.toDataURL("image/png")
+        signature_png_data: canvas.toDataURL("image/png"),
+        tg_platform: deviceInfo.tg_platform,
+        device_language: deviceInfo.device_language,
+        device_timezone: deviceInfo.device_timezone,
+        device_screen: deviceInfo.device_screen,
+        device_user_agent: deviceInfo.device_user_agent,
+        device_info: deviceInfo.device_info
       };
     }
 
